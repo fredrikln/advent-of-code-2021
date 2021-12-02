@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	u "github.com/fredrikln/advent-of-code-2021/utils"
+	. "github.com/fredrikln/advent-of-code-2021/utils"
 )
 
 func NumIncreasing(depths []int) int {
@@ -40,7 +40,7 @@ func NumIncreasingSlidingWindow(depths []int) int {
 }
 
 func main() {
-	input := u.ParseFileToIntSlice("input.txt")
+	input := ParseFileToIntSlice("input.txt")
 
 	fmt.Println("Part 1:")
 	Part1(input)
