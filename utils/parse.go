@@ -28,3 +28,21 @@ func ParseFileToIntSlice(filename string) []int {
 
 	return output
 }
+
+func ParseFileToStringSlice(filename string) []string {
+	file, err := os.Open(filename)
+	if err != nil {
+		panic("Could not read file")
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	output := make([]string, 0)
+
+	for scanner.Scan() {
+		output = append(output, scanner.Text())
+	}
+
+	return output
+}
