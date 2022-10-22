@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func ParseFileToIntSlice(filename string) []int {
@@ -45,4 +46,24 @@ func ParseFileToStringSlice(filename string) []string {
 	}
 
 	return output
+}
+
+func ParseFirstRowToIntSlice(filename string) []int {
+	file, err := os.Open(filename)
+	if err != nil {
+		panic("Could not read file")
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	scanner.Scan()
+	nums := strings.Split(scanner.Text(), ",")
+	numbers := make([]int, 0, len(nums))
+
+	for _, number := range nums {
+		n, _ := strconv.Atoi(number)
+		numbers = append(numbers, n)
+	}
+
+	return numbers
 }
