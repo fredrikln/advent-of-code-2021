@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -49,19 +50,22 @@ func ParseFileToStringSlice(filename string) []string {
 }
 
 func ParseFirstRowToIntSlice(filename string) []int {
-	file, err := os.Open(filename)
-	if err != nil {
-		panic("Could not read file")
-	}
-	defer file.Close()
+	data, err := ioutil.ReadFile(filename)
 
-	scanner := bufio.NewScanner(file)
-	scanner.Scan()
-	nums := strings.Split(scanner.Text(), ",")
+	if err != nil {
+		panic(err)
+	}
+
+	line := string(data)
+
+	firstLine := strings.TrimSpace(line)
+	nums := strings.Split(firstLine, ",")
+
 	numbers := make([]int, 0, len(nums))
 
 	for _, number := range nums {
 		n, _ := strconv.Atoi(number)
+
 		numbers = append(numbers, n)
 	}
 
