@@ -35,6 +35,10 @@ func main() {
 	// 		}
 	// 	}
 
+	// 	newSchool := make([]lanternfish, len(school), len(school)+newFish)
+	// 	copy(newSchool, school)
+	// 	school = newSchool
+
 	// 	for j := 0; j < newFish; j++ {
 	// 		school = append(school, lanternfish{8})
 	// 	}
@@ -75,6 +79,8 @@ func main() {
 		}
 		sum += days[i]
 	}
+
+	fmt.Println(days)
 
 	fmt.Println("Sum fish part 2:", sum)
 }
